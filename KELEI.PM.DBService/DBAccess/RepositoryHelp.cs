@@ -3,6 +3,7 @@ using Dapper;
 using System.Collections.Generic;
 using System.Linq;
 using KELEI.PM.DBService.Commons;
+using KELEI.Commons.Helper;
 
 namespace KELEI.PM.DBService.DBAccess
 {

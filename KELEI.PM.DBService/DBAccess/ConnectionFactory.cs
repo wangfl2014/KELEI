@@ -22,17 +22,18 @@ namespace KELEI.PM.DBService.DBAccess
             {
                 var connectionArry = databaseOption.Split(':');
                 var dbType = connectionArry.Length <= 1 ? "SQLServer" : connectionArry[0];
+                var connectionString = ConfigHelper.GetAppSetting(databaseOption);
                 IDbConnection conn;
                 switch ((Enumerator.DBType)Enum.Parse(typeof(Enumerator.DBType), dbType))
                 {
                     case Enumerator.DBType.Mysql:
-                        conn = new MySqlConnection(databaseOption);
+                        conn = new MySqlConnection(connectionString);
                         break;
                     case Enumerator.DBType.SQLServer:
-                        conn = new SqlConnection(databaseOption);
+                        conn = new SqlConnection(connectionString);
                         break;
                     default:
-                        conn = new MySqlConnection(databaseOption);
+                        conn = new MySqlConnection(connectionString);
                         break;
                 }
                 conn.Open();

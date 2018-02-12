@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KELEI.Commons.Helper;
+using KELEI.PM.DBService.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +25,7 @@ namespace KELEI.PM.DBService.DBAccess
                 modelCode = list.Item1,
                 tableName = list.Item2,
                 column = sqlColumn.Item4,
-                dbConnection = list.Item3,
+                dbConnection = list.Item3?? ConstSet.DefaultDBConnection,
                 modelObj = model
             };
             
@@ -39,7 +41,7 @@ namespace KELEI.PM.DBService.DBAccess
             }
             else
             {
-                relationSql = string.Join(" ", relationList.Select(p => p.relationTxt).ToArray());
+                relationSql = string.Join(" ", relationList.Select(p => p.relationTxt).Distinct().ToArray());
             }
 
             var selectSql = string.Format("select {0} from {1} {2}", string.Join(",", sqlColumn.Item1.Select(p => p.columnTxt).ToArray()), list.Item2, relationSql);

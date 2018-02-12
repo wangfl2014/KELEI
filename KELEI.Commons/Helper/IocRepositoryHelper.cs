@@ -20,16 +20,20 @@ namespace KELEI.Commons.Helper
             //container = builder.Build();
             if (!string.IsNullOrEmpty(assemblys))
             {
-                var arrAssembly = assemblys.Split(',');
+                var arrAssembly = assemblys.Split('|');
                 foreach (var nameItem in arrAssembly)
                 {
-                    var arrType = GetModels(nameItem);
+                    var arrName = nameItem.Split(',');
+                    var arrType = GetModels(arrName[0]);
                     builder = new ContainerBuilder();
                     foreach (Type type in arrType)
                     {
-                        if (type.FullName.IndexOf(assemblys) >= 0 && type.BaseType.FullName.IndexOf(assemblys) >= 0)
+                        if (type.Namespace.Equals(arrName[1]))
                         {
-                            builder.RegisterType(type).As(type.BaseType);
+                            if (type.FullName.IndexOf(arrName[0]) >= 0 && type.BaseType.FullName.IndexOf(arrName[0]) >= 0)
+                            {
+                                builder.RegisterType(type).As(type.BaseType);
+                            }
                         }
                     }
                 }

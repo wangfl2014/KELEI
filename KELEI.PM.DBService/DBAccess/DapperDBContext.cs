@@ -25,7 +25,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if(conn!=null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -34,6 +35,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -47,7 +53,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -56,6 +63,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -69,7 +81,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -78,6 +91,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -91,7 +109,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -100,6 +119,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -113,7 +137,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -122,6 +147,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -135,7 +165,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -144,6 +175,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -158,7 +194,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -167,6 +204,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -180,7 +222,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -188,6 +231,11 @@ namespace KELEI.PM.DBService.DBAccess
                     var restult = conn.Query(sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
                     sw.Stop(); LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -201,7 +249,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -210,6 +259,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -223,7 +277,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -232,6 +287,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -245,7 +305,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -254,6 +315,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -267,7 +333,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -275,6 +342,11 @@ namespace KELEI.PM.DBService.DBAccess
                     var restult = conn.Query(sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
                     sw.Stop(); LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -288,7 +360,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -297,6 +370,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -310,7 +388,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -319,6 +398,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -333,7 +417,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -342,6 +427,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -355,7 +445,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -364,6 +455,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -377,7 +473,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -386,6 +483,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -399,7 +501,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -408,6 +511,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -421,7 +529,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -430,6 +539,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -443,7 +557,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -454,6 +569,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return new Tuple<long, List<T>>(restultCount, restultList);
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -467,7 +587,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -476,6 +597,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -489,7 +615,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -498,6 +625,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -509,7 +641,8 @@ namespace KELEI.PM.DBService.DBAccess
 
         public static SqlMapper.GridReader QueryMultiple(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null, string databaseOption = ConstSet.DefaultDBConnection)
         {
-            using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+            var conn = DBConnectObject.GetDBObject(databaseOption);
+            if (conn != null)
             {
                 try
                 {
@@ -527,13 +660,19 @@ namespace KELEI.PM.DBService.DBAccess
                     throw ex;
                 }
             }
+            else
+            {
+                LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                throw new Exception("数据库链接null");
+            }
         }
 
         public static SqlMapper.GridReader QueryMultiple(CommandDefinition command, string databaseOption = ConstSet.DefaultDBConnection)
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -542,6 +681,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -555,7 +699,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = "SQL语句:" + sql + "  \n SQL参数: " + JsonConvert.SerializeObject(param) + " \n";
                     LogHelper.Info(info);
@@ -564,6 +709,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + sql + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -577,7 +727,8 @@ namespace KELEI.PM.DBService.DBAccess
         {
             try
             {
-                using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+                var conn = DBConnectObject.GetDBObject(databaseOption);
+                if (conn != null)
                 {
                     var info = " SQL语句:" + command.CommandText + "  \n SQL命令类型: " + command.CommandType + " \n";
                     LogHelper.Info(info);
@@ -586,6 +737,11 @@ namespace KELEI.PM.DBService.DBAccess
                     sw.Stop();
                     LogHelper.Info(info + "耗时:" + sw.ElapsedMilliseconds + (sw.ElapsedMilliseconds > 1000 ? "#####" : string.Empty) + "\n");
                     return restult;
+                }
+                else
+                {
+                    LogHelper.Error("SQL语句:" + command.CommandText + "  \n SQL命令类型:数据库链接null ");
+                    throw new Exception("数据库链接null");
                 }
             }
             catch (Exception ex)
@@ -598,7 +754,8 @@ namespace KELEI.PM.DBService.DBAccess
         public static Tuple<bool, string> ExecuteTransaction(List<Tuple<string, object>> trans, string databaseOption = ConstSet.DefaultDBConnection, int? commandTimeout = null)
         {
             if (!trans.Any()) return new Tuple<bool, string>(false, "执行事务SQL语句不能为空！");
-            using (var conn = ConnectionFactory.CreateConnection(databaseOption))
+            var conn = DBConnectObject.GetDBObject(databaseOption);
+            if (conn != null)
             {
                 using (var transaction = conn.BeginTransaction())
                 {
@@ -633,11 +790,11 @@ namespace KELEI.PM.DBService.DBAccess
                     }
                 }
             }
-        }
-
-        public static string GetLikeFormat(string key)
-        {
-            return "%" + key + "%";
+            else
+            {
+                LogHelper.Error("SQL命令类型:数据库链接null ");
+                throw new Exception("数据库链接null");
+            }
         }
 
     }

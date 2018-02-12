@@ -20,14 +20,36 @@ namespace KELEI.Commons.AccessRPC
 
         private void Read()
         {
-            while (true)
+            Task.Run(() =>
             {
-                byte[] workload = receiver.ReceiveFrameBytes();
-                Task.Run(() => {
-                    ReceiveMessage p = ProtoSerialize.Deserialize<ReceiveMessage>(workload);
-                    NetMqResultHash.AddHash(p.Id.ToString() + "." + p.Subject, p.Body);
-                });
-                Thread.Sleep(10);
+                while (true)
+                {
+                    byte[] workload = receiver.ReceiveFrameBytes();
+                    Task.Run(() =>
+                    {
+                        ReceiveMessage p = ProtoSerialize.Deserialize<ReceiveMessage>(workload);
+                        NetMqResultHash.AddHash(p.Id.ToString() + "." + p.Subject, p.Body);
+                    });
+                    Thread.Sleep(10);
+                }
+            });
+        }
+
+        public void Dispose()
+        {
+            if (receiver != null)
+            {
+                receiver.Dispose();
+                receiver = null;
+            }
+        }
+
+        ~NetMqPull()
+        {
+            if (receiver != null)
+            {
+                receiver.Dispose();
+                receiver = null;
             }
         }
 

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects>
+	<object id="Users_ListenerService" type="KELEI.PM.DBService.Listener.Users_Listener,KELEI.PM.DBService"></object>
+</objects>

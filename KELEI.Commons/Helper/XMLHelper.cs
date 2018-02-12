@@ -36,7 +36,7 @@ namespace KELEI.Commons.Helper
             }
             else
             {
-                path = System.AppDomain.CurrentDomain.BaseDirectory + "\\" + xmlPath;
+                path = System.AppDomain.CurrentDomain.BaseDirectory + xmlPath;
             }
             if (!System.IO.File.Exists(path))
                 return null;

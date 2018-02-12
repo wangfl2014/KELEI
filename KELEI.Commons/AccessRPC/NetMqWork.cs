@@ -2,6 +2,7 @@
 using NetMQ;
 using System.Threading.Tasks;
 using System.Threading;
+using System;
 
 namespace KELEI.Commons.AccessRPC
 {
@@ -11,32 +12,77 @@ namespace KELEI.Commons.AccessRPC
         PushSocket sender = null;
         public NetMqWork(string pullIP, string pushIP)
         {
-            receiver = new PullSocket($">tcp://{pullIP}");
-            sender = new PushSocket($">tcp://{pushIP}");
-            Read();
+            try
+            {
+                receiver = new PullSocket($">tcp://{pullIP}");
+                sender = new PushSocket($">tcp://{pushIP}");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        private void Read()
+        public void Dispose()
         {
-            while(true)
+            if (receiver != null)
             {
-                byte[] workload = receiver.ReceiveFrameBytes();
-                Task.Run(() => {
-                    var ps = ProtoSerialize.Deserialize<BaseMessage>(workload);
-                    var result = ServiceListenerObject.ExceMethod(ps);
-                    var message = new ReceiveMessage()
+                receiver.Close();
+                receiver.Dispose();
+                receiver = null;
+            }
+
+            if (sender != null)
+            {
+                sender.Close();
+                sender.Dispose();
+                sender = null;
+            }
+        }
+
+        public void Read()
+        {
+            Task.Run(() =>
+            {
+                while (true)
+                {
+                    byte[] workload = receiver.ReceiveFrameBytes();
+                    Task.Run(() =>
                     {
-                        Id = ps.Id,
-                        Subject=ps.Subject,
-                        Body = result
-                    };
-                    var byteMessage = ProtoSerialize.Serialize<ReceiveMessage>(message);
-                    sender.SendReady += (s, a) =>
-                    {
-                        a.Socket.SendFrame(byteMessage);
-                    };
-                });
-                Thread.Sleep(10);
+                        var ps = ProtoSerialize.Deserialize<BaseMessage>(workload);
+                        var result = ServiceListenerObject.ExceMethod(ps);
+                        var message = new ReceiveMessage()
+                        {
+                            Id = ps.Id,
+                            Subject = ps.Subject,
+                            Body = result
+                        };
+                        var byteMessage = ProtoSerialize.Serialize<ReceiveMessage>(message);
+                        sender.SendReady += (s, a) =>
+                        {
+                            a.Socket.SendFrame(byteMessage);
+                        };
+                    });
+
+                    Thread.Sleep(10);
+                }
+            });
+        }
+
+        ~NetMqWork()
+        {
+            if (receiver != null)
+            {
+                receiver.Close();
+                receiver.Dispose();
+                receiver = null;
+            }
+
+            if (sender != null)
+            {
+                sender.Close();
+                sender.Dispose();
+                sender = null;
             }
         }
     }

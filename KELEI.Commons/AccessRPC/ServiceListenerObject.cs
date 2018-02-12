@@ -68,7 +68,7 @@ namespace KELEI.Commons.AccessRPC
                 object obj = Activator.CreateInstance(o, true);//根据类型创建实例
                 return obj;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

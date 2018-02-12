@@ -1,0 +1,1 @@
+%~dp0\KELEI.PM.DBService.exe uninstall

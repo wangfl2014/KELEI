@@ -8,9 +8,7 @@ namespace KELEI.PM.DBService.Commons
         public enum ConnectionTypes
         {
             [Description("实时业务库")]
-            RWsqlConnection = 1,
-            [Description("业务分析库")]
-            RsqlConnection = 2,
+            SQLServer_ConnectionDb = 1
         }
 
         /// <summary>

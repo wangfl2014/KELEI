@@ -16,25 +16,24 @@ namespace KELEI.Commons.AccessRPC
         {
             byte[] obj = ProtoSerialize.Serialize<BaseMessage>(msg);
             object result = null;
-            sender.SendReady += (s, a) =>
+            sender.SendFrame(obj);
+
+            while (true)
             {
-                a.Socket.SendFrame(obj);
-                while(true)
+                var value = NetMqResultHash.GetHash(msg.Id.ToString() + "." + msg.Subject);
+                if (value.Item1)
                 {
-                    var value =NetMqResultHash.GetHash(msg.Id.ToString()+"."+msg.Subject);
-                    if(value.Item1)
+                    result = value.Item2;
+                    //删除结果
+                    Task.Run(() =>
                     {
-                        result = value.Item2;
-                        //删除结果
-                        Task.Run(() =>
-                        {
-                            NetMqResultHash.DeleteHash(msg.Id.ToString() + "." + msg.Subject);
-                        });
-                        break;
-                    }
+                        NetMqResultHash.DeleteHash(msg.Id.ToString() + "." + msg.Subject);
+                    });
+                    break;
                 }
-            };
-            return  (T)result;
+            }
+
+            return (T)result;
         }
 
         public void Dispose()
