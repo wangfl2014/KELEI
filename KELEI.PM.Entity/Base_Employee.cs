@@ -13,7 +13,7 @@ namespace KELEI.PM.Entity
         /// </summary>
         [ProtoMember(1)]
         [DataProperty(Field = "UserMail", IsKey = true)]
-        public long UserMail
+        public string UserMail
         {
             get;
             set;
