@@ -27,7 +27,7 @@ namespace KELEI.Commons.AccessRPC
                     byte[] workload = receiver.ReceiveFrameBytes();
                     Task.Run(() =>
                     {
-                        ReceiveMessage p = ProtoSerialize.Deserialize<ReceiveMessage>(workload);
+                        BaseMessage p = ProtoSerialize.Deserialize<BaseMessage>(workload);
                         NetMqResultHash.AddHash(p.Id.ToString() + "." + p.Subject, p.Body);
                     });
                     Thread.Sleep(10);

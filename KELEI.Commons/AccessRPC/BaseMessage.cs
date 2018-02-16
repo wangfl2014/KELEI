@@ -39,16 +39,4 @@ namespace KELEI.Commons.AccessRPC
         /// </summary>
         GZipStream = 1
     }
-
-    [Serializable]
-    [ProtoContract]
-    public class ReceiveMessage
-    {
-        [ProtoMember(1)]
-        public Guid Id { get; set; }
-        [ProtoMember(2)]
-        public string Subject { get; set; }
-        [ProtoMember(3)]
-        public object Body { get; set; }
-    }
 }

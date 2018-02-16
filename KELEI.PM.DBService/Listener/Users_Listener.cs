@@ -11,17 +11,18 @@ namespace KELEI.PM.DBService.Listener
         User_Service userServer = new User_Service();
 
         [MessageListener("6b90f8b9-69df-40ec-900c-5793d6d1d351-GetUser")]
-        public virtual Base_Employee GetUser(BaseMessage msg)
+        public virtual byte[] GetUser(BaseMessage msg)
         {
             string errorMsg = "";
-            Base_Employee res = null;
+            byte[] res = null;
             string userID = string.Empty;
             try
             {
                 //解析传入body
                 ReceiveMessageHandle rmHandle = new ReceiveMessageHandle(msg);
                 rmHandle.GetParameters<string>(out userID);
-                res = userServer.GetUser(userID);
+                var user = userServer.GetUser(userID);
+                res = ProtoSerialize.Serialize<Base_Employee>(user);
             }
             catch (Exception ex)
             {
@@ -32,18 +33,24 @@ namespace KELEI.PM.DBService.Listener
         }
 
         [MessageListener("6b90f8b9-69df-40ec-900c-5793d6d1d351-GetUsers")]
-        public virtual Tuple<long, List<Base_Employee>> GetUsers(BaseMessage msg)
+        public virtual byte[] GetUsers(BaseMessage msg)
         {
             string errorMsg = "";
-            Tuple<long, List<Base_Employee>> res = null;
-            long startRow = 0;
-            long endRow = 0;
+            byte[] res = null;
+            int startRow = 0;
+            int endRow = 0;
             try
             {
                 //解析传入body
                 ReceiveMessageHandle rmHandle = new ReceiveMessageHandle(msg);
-                rmHandle.GetParameters<long,long>(out startRow,out endRow);
-                res = userServer.GetUsers(startRow, endRow);
+                rmHandle.GetParameters<int,int>(out startRow,out endRow);
+                var users = userServer.GetUsers(startRow, endRow);
+                var resObj = new Base_EmployeeList()
+                {
+                    CountRow= users.Item1,
+                    Base_Employees=users.Item2
+                };
+                res = ProtoSerialize.Serialize<Base_EmployeeList>(resObj);
             }
             catch (Exception ex)
             {

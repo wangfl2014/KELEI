@@ -21,8 +21,7 @@ namespace KELEI.PM.DBService.DBAccess
         public bool isPrimaryKey { get; set; } = false;
         public string sourceModel { get; set; }
         public string mappingKeys { get; set; }
-        public string defaultValue { get; set; }
-        public bool isLazy { get; set; } = true;
+        public bool isLazy { get; set; } = false;
     }
 
     public class AnalysisModel

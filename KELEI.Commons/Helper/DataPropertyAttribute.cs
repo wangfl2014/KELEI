@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,50 +81,14 @@ namespace KELEI.Commons.Helper
     /// <summary>
     /// 表述数据表
     /// </summary>
+    [ProtoContract]
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
     public class DataClassAttribute : System.Attribute
     {
-        private string _Table = string.Empty;
-        private string _Database = string.Empty;
-
-        public DataClassAttribute()
-        {
-
-        }
-        public DataClassAttribute(string strTable)
-        {
-            _Table = strTable;
-        }
-
-        public DataClassAttribute(string strTable,string strDatabase)
-        {
-            _Table = strTable;
-            _Database = strDatabase;
-        }
-
-        public string Table
-        {
-            get
-            {
-                return _Table;
-            }
-            set
-            {
-                _Table = value;
-            }
-        }
-
-        public string Database
-        {
-            get
-            {
-                return _Database;
-            }
-            set
-            {
-                _Database = value;
-            }
-        }
+        [ProtoMember(1)]
+        public string Table { get; set; }
+        [ProtoMember(2)]
+        public string Database{ get; set; }
     }
 
     /// <summary>
@@ -140,6 +105,7 @@ namespace KELEI.Commons.Helper
         private string _MappingKeys = string.Empty;//关联条件
         private string _DefaultExpression = string.Empty;//数据库缺少值，如果值为空时数据库缺省值（常量，或数据库函数）
         private string _ColumCode = string.Empty;
+        private bool _IsLazy = false;
 
         public DataPropertyAttribute()
         {
@@ -265,6 +231,21 @@ namespace KELEI.Commons.Helper
                 _ColumCode = value;
             }
         }
+
+        /// <summary>
+        /// 查询时不加载扩展类型，默认false，true不加载
+        /// </summary>
+        public bool IsLazy
+        {
+            get
+            {
+                return _IsLazy;
+            }
+            set
+            {
+                _IsLazy = value;
+            }
+        }
     }
 
     /// <summary>
@@ -347,7 +328,7 @@ namespace KELEI.Commons.Helper
             if (dca == null || string.IsNullOrEmpty(dca.Table))
             {
                 LogHelper.Info($"{modelName}未定义实体对应表与数据库信息");
-                DmcExceptionTools.TrueThrow(true, $"该对象{modelName}没有定义相关的表与数据库！");
+                //DmcExceptionTools.TrueThrow(true, $"该对象{modelName}没有定义相关的表与数据库！");
                 return null;
             }
             string tableName = dca.Table;

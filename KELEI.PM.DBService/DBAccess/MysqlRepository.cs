@@ -37,10 +37,12 @@ namespace KELEI.PM.DBService.DBAccess
                     //填充ExteModel,ExteModelList
                     //获取ExteModel类型
                     var columnList = dic.Item1.column.Where(p => p.cloumnType == BindingcloumnType.ExteModel && !p.isLazy)?.ToList();
-                    result = RepositoryHelp<T>.SetExteModel(result, columnList);
+                    if(columnList!=null && columnList.Count()>0)
+                       result = RepositoryHelp<T>.SetExteModel(result, columnList);
                     //获取并填充ExteModelList
                     columnList = dic.Item1.column.Where(p => p.cloumnType == BindingcloumnType.ExteModelList && !p.isLazy)?.ToList();
-                    result = RepositoryHelp<T>.SetExteModel(result, columnList);
+                    if (columnList != null && columnList.Count() > 0)
+                        result = RepositoryHelp<T>.SetExteModel(result, columnList);
                 }
                 return result;
             }

@@ -100,7 +100,6 @@ namespace KELEI.PM.DBService.DBAccess
                     dataCloumn=item.Field,
                     isPrimaryKey=item.IsKey,
                     mappingKeys=item.MappingKeys,
-                    defaultValue=item.DefaultExpression,
                     sourceModel=item.SourceModel
                 });
 

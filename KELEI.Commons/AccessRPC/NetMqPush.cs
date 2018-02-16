@@ -23,7 +23,7 @@ namespace KELEI.Commons.AccessRPC
                 var value = NetMqResultHash.GetHash(msg.Id.ToString() + "." + msg.Subject);
                 if (value.Item1)
                 {
-                    result = value.Item2;
+                    result = ProtoSerialize.Deserialize<T>((byte[])value.Item2);
                     //删除结果
                     Task.Run(() =>
                     {

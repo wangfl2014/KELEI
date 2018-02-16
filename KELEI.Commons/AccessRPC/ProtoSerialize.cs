@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KELEI.Commons.Helper;
+using System;
 using System.IO;
 
 namespace KELEI.Commons.AccessRPC
@@ -25,6 +26,7 @@ namespace KELEI.Commons.AccessRPC
             }
             catch (Exception ex)
             {
+                LogHelper.Error("ProtoSerialize序列号错误:" + ex.Message);
                 return null;
             }
         }

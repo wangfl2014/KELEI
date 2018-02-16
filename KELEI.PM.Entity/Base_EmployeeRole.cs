@@ -75,7 +75,7 @@ namespace KELEI.PM.Entity
         /// <summary>
         /// RoleType
         /// </summary>
-        [ProtoMember(6)]
+        [ProtoMember(7)]
         [DataProperty(Field = "RoleType", CloumnType = BindingcloumnType.ExteData, MappingKeys = "this.Role_ID=Base_SystemRole.Role_ID", SourceModel = "Base_SystemRole")]
         public string RoleType
         {
@@ -86,7 +86,7 @@ namespace KELEI.PM.Entity
         /// <summary>
         /// RangeID
         /// </summary>
-        [ProtoMember(7)]
+        [ProtoMember(8)]
         [DataProperty(Field = "RangeID")]
         public string RangeID
         {
@@ -96,7 +96,7 @@ namespace KELEI.PM.Entity
         /// <summary>
         /// IsBackup
         /// </summary>
-        [ProtoMember(8)]
+        [ProtoMember(9)]
         [DataProperty(Field = "IsBackup")]
         public int IsBackup
         {
@@ -106,7 +106,7 @@ namespace KELEI.PM.Entity
         /// <summary>
         /// ConUserMail
         /// </summary>
-        [ProtoMember(9)]
+        [ProtoMember(10)]
         [DataProperty(Field = "ConUserMail")]
         public string ConUserMail
         {

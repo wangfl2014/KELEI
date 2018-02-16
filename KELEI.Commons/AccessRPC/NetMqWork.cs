@@ -51,17 +51,15 @@ namespace KELEI.Commons.AccessRPC
                     {
                         var ps = ProtoSerialize.Deserialize<BaseMessage>(workload);
                         var result = ServiceListenerObject.ExceMethod(ps);
-                        var message = new ReceiveMessage()
+                        var message = new BaseMessage()
                         {
                             Id = ps.Id,
                             Subject = ps.Subject,
-                            Body = result
+                            Body= (byte[])result,
+                            MessageType = BaseMessageType.ListOfParameters
                         };
-                        var byteMessage = ProtoSerialize.Serialize<ReceiveMessage>(message);
-                        sender.SendReady += (s, a) =>
-                        {
-                            a.Socket.SendFrame(byteMessage);
-                        };
+                        var byteMessage = ProtoSerialize.Serialize<BaseMessage>(message);
+                        sender.SendFrame(byteMessage);
                     });
 
                     Thread.Sleep(10);

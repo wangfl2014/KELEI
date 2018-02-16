@@ -70,6 +70,7 @@ namespace KELEI.Commons.AccessRPC
             }
             catch(Exception ex)
             {
+                LogHelper.Error("ServiceListenerObject错误:" + ex.Message);
                 return null;
             }
         }
