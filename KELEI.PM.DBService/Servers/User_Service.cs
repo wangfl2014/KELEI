@@ -22,5 +22,10 @@ namespace KELEI.PM.DBService.Servers
         {
             return users.repository.GetByKey(new { UserMail = userID });
         }
+
+        public Tuple<bool, string> InsertUser(Base_Employee user)
+        {
+            return users.repository.InsertEntitile(user);
+        }
     }
 }

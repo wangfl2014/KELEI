@@ -1,9 +1,11 @@
 ﻿using KELEI.Commons.Helper;
 using ProtoBuf;
+using System;
 using System.Collections.Generic;
 
 namespace KELEI.PM.Entity
 {
+    [Serializable]
     [ProtoContract]
     [DataClassAttribute(Table = "Base_Employee", Database = "SQLServer:ConnectionDb")]
     public class Base_Employee
@@ -52,6 +54,7 @@ namespace KELEI.PM.Entity
         }
     }
 
+    [Serializable]
     [ProtoContract]
     public class Base_EmployeeList
     {

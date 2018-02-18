@@ -59,5 +59,27 @@ namespace KELEI.PM.DBService.Listener
             }
             return res;
         }
+
+        [MessageListener("6b90f8b9-69df-40ec-900c-5793d6d1d351-InsertUser")]
+        public virtual byte[] InsertUser(BaseMessage msg)
+        {
+            string errorMsg = "";
+            byte[] res = null;
+            Base_Employee user;
+            try
+            {
+                //解析传入body
+                ReceiveMessageHandle rmHandle = new ReceiveMessageHandle(msg);
+                rmHandle.GetParameters<Base_Employee>(out user);
+                var users = userServer.InsertUser(user)?.Item1;
+                res = ProtoSerialize.Serialize<bool>(users ?? false);
+            }
+            catch (Exception ex)
+            {
+                errorMsg = ex.Message;
+                res = null;
+            }
+            return res;
+        }
     }
 }

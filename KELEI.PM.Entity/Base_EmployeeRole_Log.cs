@@ -4,6 +4,7 @@ using System;
 
 namespace KELEI.PM.Entity
 {
+    [Serializable]
     [DataClassAttribute(Table = "Base_EmployeeRole_Log", Database = "SQLServer:ConnectionDb")]
     [ProtoContract]
     public class Base_EmployeeRole_Log
